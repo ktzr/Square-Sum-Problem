@@ -1,4 +1,15 @@
+import sys
+import logging
 from math import sqrt
+
+logger = logging.getLogger(__name__)
+logger.setLevel(level=logging.DEBUG)
+stdout_log = logging.StreamHandler(sys.stdout)
+data_log = logging.FileHandler('out.txt', encoding="UTF-8")
+stdout_log.setLevel(logging.INFO)
+data_log.setLevel(logging.INFO)
+logger.addHandler(stdout_log)
+logger.addHandler(data_log)
 
 
 def find_a_path(graph, start, path=None):
@@ -30,5 +41,5 @@ while True:
         found = found or find_a_path(connections, start_point)
         if found:
             break
-    print(i, ":", found)
+    logger.debug(i, ":", found)
     i += 1
