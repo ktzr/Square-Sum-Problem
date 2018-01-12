@@ -2,6 +2,8 @@ import sys
 import logging
 from math import sqrt
 
+from datetime import datetime
+
 logger = logging.getLogger(__name__)
 logger.setLevel(level=logging.DEBUG)
 stdout_log = logging.StreamHandler(sys.stdout)
@@ -37,9 +39,11 @@ while True:
             connections[i] += [j]
             connections[j] += [i]
     found = None
+    start_time = datetime.now()
     for start_point in range(1, i + 1):
         found = found or find_a_path(connections, start_point)
         if found:
             break
-    logger.info("{} : {}".format(i,found))
+    time_to_run = datetime.now() - start_time
+    logger.info("{} ({} seconds): {}".format(i,time_to_run.total_seconds(),found))
     i += 1
