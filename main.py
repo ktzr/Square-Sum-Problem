@@ -5,7 +5,7 @@ from math import sqrt
 logger = logging.getLogger(__name__)
 logger.setLevel(level=logging.DEBUG)
 stdout_log = logging.StreamHandler(sys.stdout)
-data_log = logging.FileHandler('out.txt', encoding="UTF-8")
+data_log = logging.FileHandler('out.log', encoding="UTF-8")
 stdout_log.setLevel(logging.INFO)
 data_log.setLevel(logging.INFO)
 logger.addHandler(stdout_log)
@@ -41,5 +41,5 @@ while True:
         found = found or find_a_path(connections, start_point)
         if found:
             break
-    logger.debug(i, ":", found)
+    logger.info("{} : {}".format(i,found))
     i += 1
