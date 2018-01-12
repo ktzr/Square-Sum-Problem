@@ -41,5 +41,5 @@ while True:
         found = found or find_a_path(connections, start_point)
         if found:
             break
-    logger.debug(i, ":", found)
+    logger.info(i, ":", found)
     i += 1
